@@ -1,0 +1,14 @@
+{
+    "name": "simform/http_client",
+    "autoload": {
+        "psr-4": {
+            "Simform\\HttpClient\\": "src/app/Http/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nikhil Detroja"
+        }
+    ],
+    "require": {}
+}
