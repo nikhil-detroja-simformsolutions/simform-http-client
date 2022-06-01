@@ -4,6 +4,15 @@
 ---
 The PHP HTTP Client is a PHP7.x supported light weight, simple package implemented with the OOPS concepts to make the API request. It supports different HTTP requests such as  'GET', 'POST', 'PUT', 'PATCH', 'DELETE'  The package also handles an exception if the requested URL returned any error or is invalid or has malformed JSON response. The package by default uses the singleton instance behavior which can be configured as per the need.
 
+### Installation.
+
+- Go to the working copy of the project  
+
+- run the "composer install" and "composer dump-autoload" command in-order to install required dependencies.
+
+- Open an URL like "http://IP_ADDRESS or locahost/simform-http-client/src/demo" to access and test the application. 
+
+
 ### Usage
 ---
 The following code snippet can be used for the simple get request.
