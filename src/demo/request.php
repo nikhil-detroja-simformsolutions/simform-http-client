@@ -5,7 +5,6 @@ require '../../vendor/autoload.php';
 use Exception as Exception;
 use Simform\HttpClient\Request;
 
-
 if (empty($_POST['url']) || empty($_POST['method'])) {
     throw new Exception('Invalid request');
 }
@@ -13,7 +12,7 @@ if (empty($_POST['url']) || empty($_POST['method'])) {
 $requestedMethod = $_POST['method'];
 
 $supportedMethods = [
-    'GET', 'POST', 'PUT', 'PATCH', 'DELETE'
+    'GET', 'POST', 'PUT', 'PATCH', 'DELETE','OPTIONS'
 ];
 
 if (!in_array($requestedMethod, $supportedMethods)) {
@@ -34,8 +33,6 @@ try {
         'response' => $response->getBody(),
     ]);
 } catch (Exception $e) {
-    echo $e->getCode();
-    exit;
     http_response_code($e->getCode());
     header('Content-type: application/json');
     echo json_encode($e->getMessage());

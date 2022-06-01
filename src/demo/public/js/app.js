@@ -1,5 +1,6 @@
 var App = {};
 (function () {
+    const loading = "Loading.....";
     App = {
         selectors: {
             sendButton: jQuery('#send-request'),
@@ -28,8 +29,8 @@ var App = {};
                     data: selectorContext.requestForm.serialize(),
                     beforeSend: function () {
                         selectorContext.sendButton.attr('disabled', true);
-                        selectorContext.codeOutput.text('');
-                        selectorContext.headerOutput.text('');
+                        selectorContext.headerOutput.text(loading);
+                        selectorContext.codeOutput.text(loading);
                     },
                     success: function (result) {
                         selectorContext.codeOutput.text(JSON.stringify(result.response, null, 2));
@@ -44,7 +45,7 @@ var App = {};
                         } else if (xhr.status == 500) {
                             msg = '500 - Internal Server Error';
                         } else if (exception === 'abort') {
-                            msg = 'Ajax request aborted';
+                            msg = 'Request aborted';
                         } else {
                             msg = 'Uncaught Error';
                         }
@@ -54,7 +55,8 @@ var App = {};
                         }
 
                         selectorContext.errorContainer.html(msg).removeClass('d-none');
-
+                        selectorContext.headerOutput.text("");
+                        selectorContext.codeOutput.text("");
                         // Hide the error after 10 seconds
                         setTimeout(function () {
                             selectorContext.errorContainer.addClass('d-none');
@@ -66,6 +68,9 @@ var App = {};
         bindCancelAction: function () {
             this.selectors.cancelButton.click(function (e) {
                 e.preventDefault();
+                var selectorContext = App.selectors;
+                selectorContext.headerOutput.text("");
+                selectorContext.codeOutput.text("");
                 if (App.ongoingRequest && App.ongoingRequest.readyState !== 4) {
                     App.ongoingRequest.abort();
                 }
